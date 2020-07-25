@@ -1,5 +1,14 @@
 # Docker Basics
 
+# Docker Installation
+
+```
+sudo yum install docker-ce
+sudo systemctl start docker 
+sudo systemctl enable docker
+sudo docker run hello-world
+sudo usermod -aG docker $USER
+```
 
 ```
 docker pull alpine:latest
