@@ -1,0 +1,7 @@
+Description=my slice for docker resources
+[Slice]
+CPUAccounting=true
+CPUQuota=30%
+MemoryAccounting=true
+MemoryLimit=500M
+EOF

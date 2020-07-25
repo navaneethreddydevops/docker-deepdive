@@ -80,4 +80,5 @@ docker run --rm \
 # All systemcalls and configuration are explained well here 
 ```
 https://docs.docker.com/engine/security/seccomp/
+https://suraj.io/post/docker-seccomp-manual/
 ```
