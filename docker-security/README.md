@@ -82,3 +82,36 @@ docker run --rm \
 https://docs.docker.com/engine/security/seccomp/
 https://suraj.io/post/docker-seccomp-manual/
 ```
+
+# Docker Bench 
+
+```
+sh -x docker-security/docker-bench/Dockerbench.sh
+```
+
+# Secure Images with SSL Certificate with Certbot Encrypt
+
+```
+sudo yum install certbot python2-certbot-apache
+sudo certbot certonly --standalone --preferred-challenges http --non-interactive --staple-ocsp --agree-tos -m navaneethreddydevops@gmail.com -d navaneethreddydevops.mylabserver.com
+cd /etc/letsencrypt/live/navaneethreddydevops.mylabserver.com/
+cp privatekey.pem domain.key
+cat cert.pem chain.pem > domain.crt
+chmod 777 domain.*
+sudo mkdir -p /mnt/docker-registry
+sudo docker run --entrypoint htpasswd registry:latest -Bbn $USERNAME $PASSWORD > /mnt/docker-registry/passfile
+```
+# To Start the Docker Registery with Docker Image
+```
+docker run -d -p 443:5000 \
+    --restart=always \
+    --name registry 
+    -v /etc/letsencrypt/live/navaneethreddydevops.mylabserver.com:/certs:Z \
+    -v /mnt/docker-registry:/var/lib/registry:Z \
+    -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+    -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+    -e REGISTRY_AUTH=htpasswd \
+    -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+    -e REGISTRY_AUTH_HTPASSWD_PATH=/var/lib/registry/passfile \
+    registry:latest
+```
