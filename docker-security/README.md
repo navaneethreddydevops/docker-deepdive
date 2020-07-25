@@ -46,8 +46,29 @@ MemoryLimit=500M
 EOF
 systemctl daemon-reload
 ```
-# Creating a docker to run with second specific cgroup limits 
+# Creating a docker to run with second specific cgroup limits
 
 ```
 docker run -it --cgroup-parent=second_limits.slice docker.io/python   #This will have a different limits applied on it
-``` 
+```
+
+# Docker Security seccomp
+
+```
+grep SECCOMP /boot/config-$(uname -r)
+```
+These all flags should have yes flag to have additional security of Docker with seccomp 
+CONFIG_HAVE_ARCH_SECCOMP_FILTER=y
+CONFIG_SECCOMP_FILTER=Y
+CONFIG_SECCOMP=Y
+
+# Unit file of Docker
+```
+sudo systemctl cat docker
+```
+# seccompfile
+
+```
+cat /etc/docker/seccomp.json
+```
+# All systemcalls and configuration are explained well here https://docs.docker.com/engine/security/seccomp/
