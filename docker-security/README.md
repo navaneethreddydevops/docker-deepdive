@@ -70,5 +70,12 @@ sudo systemctl cat docker
 
 ```
 cat /etc/docker/seccomp.json
+# Create a new secomp file and start the new docker start with seccomp applied
+docker run --rm \
+             -it \
+             --security-opt seccomp=/etc/docker/secuirytseccomp.json \
+             docker.io/python
 ```
+
 # All systemcalls and configuration are explained well here https://docs.docker.com/engine/security/seccomp/
+
