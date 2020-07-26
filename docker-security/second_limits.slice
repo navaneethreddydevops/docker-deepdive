@@ -4,4 +4,3 @@ CPUAccounting=true
 CPUQuota=30%
 MemoryAccounting=true
 MemoryLimit=500M
-EOF
