@@ -1,7 +1,7 @@
 @Library('jenkins-shared-library@master') _
 
 pipeline {
-    agent none
+    agent any
     stages {
         stage ('Checkout') {
             steps {
