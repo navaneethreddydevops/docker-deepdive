@@ -7,8 +7,7 @@ pipeline {
             steps {
                 // log.info 'Starting' 
                 script { 
-                    log.info 'Checking Our'
-                    log.warning 'Checkout is going on!'
+                    sh 'terraform --version'
                 }
             }
         }
@@ -16,8 +15,7 @@ pipeline {
             steps {
                 // log.info 'Starting' 
                 script { 
-                    log.info 'Building'
-                    log.warning 'Build is going on!'
+                    sh 'kubectl --version' 
                 }
             }
         }
@@ -25,8 +23,7 @@ pipeline {
             steps {
                 // log.info 'Starting' 
                 script { 
-                    log.info 'Deploying'
-                    log.warning 'Deploying is going on!'
+                    sh 'Docker --version' 
                 }
             }
         }
